@@ -2,11 +2,188 @@
 @tailwind components;
 @tailwind utilities;
 
-html, body {
-  padding: 0;
-  margin: 0;
+@layer base {
+  html {
+    scroll-padding-top: 88px;
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    margin: 0;
+    background: #f4efe6;
+    color: #1a1414;
+    font-family: var(--font-sans), system-ui, sans-serif;
+    font-size: 1.0625rem;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+  ::selection {
+    background: #d6e6ec;
+    color: #1a1414;
+  }
+  :focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 3px;
+  }
 }
 
-* {
-  box-sizing: border-box;
+@layer components {
+  .container-site {
+    width: 100%;
+    max-width: 1320px;
+    margin-inline: auto;
+    padding-inline: 1.25rem;
+  }
+  @media (min-width: 768px) {
+    .container-site {
+      padding-inline: 2.5rem;
+    }
+  }
+
+  /* Small caps label, used for tag numbers and field names. Never for essential sentences. */
+  .tag-label {
+    font-family: var(--font-sans), system-ui, sans-serif;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+
+  /* Buttons: square-cornered like a tag, never pills. */
+  .btn {
+    display: inline-flex;
+    min-height: 48px;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    padding: 0 1.4rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    transition: background-color 250ms, color 250ms, border-color 250ms, transform 250ms;
+  }
+  .btn-ivory {
+    background: #f4efe6;
+    color: #4a0f1f;
+  }
+  .btn-ivory:hover {
+    background: #d6e6ec;
+    color: #1a1414;
+  }
+  .btn-garnet {
+    background: #4a0f1f;
+    color: #f4efe6;
+  }
+  .btn-garnet:hover {
+    background: #1a1414;
+  }
+  .btn-line {
+    border: 1px solid currentColor;
+  }
+  .btn-line:hover {
+    background: rgba(214, 230, 236, 0.16);
+  }
+
+  .link-under {
+    background-image: linear-gradient(currentColor, currentColor);
+    background-size: 100% 1px;
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    transition: background-size 300ms;
+  }
+  .link-under:hover {
+    background-size: 0% 1px;
+    background-position: 100% 100%;
+  }
+
+  /*
+   * The jeweler's tag: a card with the string end clipped to a point and a real punched hole
+   * (masked out, so whatever is behind the tag shows through it). A faint ring edges the hole.
+   */
+  .tag {
+    position: relative;
+    background:
+      radial-gradient(circle at 1.15rem 50%, transparent 0.36rem, rgba(26, 20, 20, 0.22) 0.37rem, transparent 0.46rem),
+      #f4efe6;
+    color: #1a1414;
+    clip-path: polygon(0.75rem 0, 100% 0, 100% 100%, 0.75rem 100%, 0 50%);
+    -webkit-mask: radial-gradient(circle at 1.15rem 50%, transparent 0.32rem, #000 0.34rem);
+    mask: radial-gradient(circle at 1.15rem 50%, transparent 0.32rem, #000 0.34rem);
+    padding: 0.9rem 1.25rem 0.9rem 2.35rem;
+  }
+  .tag.tag-garnet {
+    background:
+      radial-gradient(circle at 1.15rem 50%, transparent 0.36rem, rgba(244, 239, 230, 0.35) 0.37rem, transparent 0.46rem),
+      #4a0f1f;
+    color: #f4efe6;
+  }
+}
+
+/* Scroll reveal: fade and lift, or an uncovering mask for photos. */
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 650ms cubic-bezier(0.22, 0.61, 0.36, 1), transform 650ms cubic-bezier(0.22, 0.61, 0.36, 1);
+  transition-delay: calc(var(--i, 0) * 70ms);
+}
+.reveal.is-in {
+  opacity: 1;
+  transform: none;
+}
+/* The clip sits on the child: Chrome's IntersectionObserver honors the target's own clip-path,
+   so a fully clipped observed element would never count as visible. */
+.reveal-loupe > * {
+  clip-path: circle(0% at 50% 50%);
+  transition: clip-path 700ms cubic-bezier(0.22, 0.61, 0.36, 1);
+  transition-delay: calc(var(--i, 0) * 70ms);
+}
+.reveal-loupe.is-in > * {
+  clip-path: circle(75% at 50% 50%);
+}
+
+/* A hanging tag settles once on load (one small swing), then stays still. */
+@keyframes settle {
+  0% {
+    transform: rotate(-7deg);
+  }
+  55% {
+    transform: rotate(3deg);
+  }
+  100% {
+    transform: rotate(-2deg);
+  }
+}
+.swing {
+  transform-origin: 50% 0;
+  transform: rotate(-2deg);
+  animation: settle 1.4s cubic-bezier(0.22, 0.61, 0.36, 1) 0.2s both;
+}
+
+.loupe-zoom img {
+  transition: transform 700ms cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+.loupe-zoom:hover img {
+  transform: scale(1.06);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .reveal-loupe > * {
+    clip-path: none;
+    transition: none;
+  }
+  .swing {
+    animation: none;
+  }
+  .loupe-zoom img,
+  .btn,
+  .link-under {
+    transition: none;
+  }
+  .loupe-zoom:hover img {
+    transform: none;
+  }
 }
