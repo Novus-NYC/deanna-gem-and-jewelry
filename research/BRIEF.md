@@ -1,18 +1,54 @@
-# Deana Gem and Jewelry: research brief
+# Deanna Gem and Jewelry Imports LLC: research brief
 
-Assignment (due 11/15/26): "Build a simple jewelry website where visitors can browse photos of the pieces and ask about availability."
+Researched 2026-11-10. Earlier research searched "Deana" and found nothing; the business spells it **Deanna** (two n's), like the repo.
 
-## What we searched (November 2026)
+## Sources
+- Instagram **@deannagemandjewelry2023** (https://www.instagram.com/deannagemandjewelry2023/): 16 posts, about 200 followers.
+- Staten Island Chamber of Commerce member directory: https://web.sichamber.com/atlas/directory/category/jewelers---retail/Deanna-Gem-and-Jewelry-Imports-LLC-5216 (member since 2026).
+- Staten Island Neighbors business listing: https://sineighbors.com/sibusinesses/deanna-gem-and-jewelry-imports-llc/
+- Staten Island Chamber "New Member Spotlight" video (YouTube, KYYNJj7izq0): the owners interviewed, 4:29. Notes below come from the auto captions.
+- Their own Google Form "Custom Jewelry Inquiry": https://forms.gle/KzEy6SCYCrSEjNSg7 (linked from the Instagram bio).
+- A charity auction flyer posted on Instagram (Humble Heroes of FDNY).
 
-Web search, Google Maps, Instagram, Etsy, and business registries for "Deana Gem and Jewelry", "Deanna Gem and Jewelry", "Deana Gems" and close spellings.
+## Who they are (their words)
+"Deanna Gem and Jewelry Imports LLC is a proud family-owned business in New York, dedicated to connecting talented (Ceylon) Sri Lankan gem and jewelry artisans with buyers across the United States and world. Founded by a first generation Sri Lankan-American and named after our daughter, Deanna ( Our Precious Gem). The company reflects our deep love for our heritage and passion for Sri Lankan gemstones. Together, we bring authenticity, expertise, and heartfelt dedication to every piece we share." (Instagram "Who are we?" post)
 
-## What we found
+- Owners: **Dananjaya Balasuriya** (founder; Instagram @dananjaya.balasuriya) and **Disni Balasuriya** (co-owner; @disni_93; Chamber contact). Husband and wife.
+- Started in **2023**. Home-based on **Staten Island**, no storefront. (The Chamber lists a street address; it is their home, so the site says only "Staten Island, New York".)
+- Instagram bio: "Natural Gemstones & Jewelry, Based in New York USA. DM for inquiries."
 
-Nothing public. No website, no social account, no marketplace shop, no map listing, no registry entry, and no phone, email or address. The repo folder is spelled "deanna" and the assignment spells the business "Deana"; the site uses "Deana" and the owner should confirm the spelling.
+## What they do (from the video)
+1. **Wholesale gemstones**: import natural gemstones from Sri Lanka and sell to jewelers in the US.
+2. **Custom jewelry**: one-on-one consultation, then their team of designers and jewelers in Sri Lanka makes the piece and it is imported and delivered. Rings, necklaces, pendants, bracelets and bangles. Traditionally 22-karat gold; white and yellow gold too.
+3. **Charity auctions** for foundations they choose. First one: with Humble Heroes of FDNY, a custom 2.02 ct natural Mozambique ruby and diamond ring (GRS and GIA certified, appraised by Gemological Appraisal Laboratory of America at $58,000, starting price $30,000, 30% of the final sale donated).
+- Community: first Community Sponsor vendor event with the Staten Island FerryHawks; first Staten Island Chamber Annual Meeting as a member.
 
-## What that means for the build
+## Contact (published by the business)
+- Email: deannagemandjewelryimportsllc@gmail.com (charity flyer, Staten Island Neighbors, and spoken in the video)
+- Phone, call or text: (347) 757-7479 (Chamber directory, Staten Island Neighbors; the video says call or text)
+- Instagram DMs
+- Custom jewelry form: https://forms.gle/KzEy6SCYCrSEjNSg7 (asks name, email, phone, contact method, jewelry type, metal, gemstone, ring size, budget, date, inspiration photos)
 
-- Every business fact on the site comes from the assignment sentence only: it sells jewelry, visitors browse photos of the pieces, and they ask about availability.
-- No pieces, prices, stones, metals, hours, address, story, owner name or reviews are shown, because none are known.
-- The gallery and the inquiry form are fully built but ship empty and closed. They switch on when the owner sends photos and an inquiry email or phone (see DESIGN.md, "What the owner needs to send").
-- Stock photos of loose stones are used for atmosphere only and are never presented as Deana's pieces.
+## Stones posted (photos in research/instagram/, each in a white gem box)
+| Post | Stone | Origin | Carat | Cut / shape | Notes |
+|---|---|---|---|---|---|
+| DRGDDZwjn2v | Natural unheated ruby, red | Madagascar | 1.30 | Square cushion, mixed cut | GIA certified. SOLD |
+| DRGAJdYjqC- | Natural unheated sapphire | Madagascar | 1.10 | Oval, mixed cut | GIA certified. SOLD |
+| DRGDtgMDgdQ | Natural (unheated) green tourmaline | Ceylon (Sri Lanka) | 5.24 | Octagonal step | |
+| DRGEG41jjLh | Natural green tourmaline | Ceylon (Sri Lanka) | 3.57 | Cushion, mixed | |
+| DZx32S3wt2j | Natural blue star sapphire | Ceylon (Sri Lanka) | 5.43 | Cabochon | |
+| DZx4xJ7h-Mp | Natural star sapphire | Ceylon (Sri Lanka) | 4.43 | Cabochon | |
+| DZx4bUMS2l8 | Natural star sapphire | Ceylon (Sri Lanka) | 4.17 | Cabochon | |
+
+Availability of the unsold stones is not stated; the site says "Ask if it's still available".
+
+## Brand
+Logo: "DGJ IMPORTS LLC" monogram in thin gold line drawing of a faceted crystal, on black. Their photos: stones in white gem boxes on a woven burlap surface, or held in the hand in daylight.
+
+## Confirm with the owners
+1. Which stones are still available, and new ones to add.
+2. Permission to show their names and the founders' photo (FerryHawks table photo).
+3. Whether to show the phone number for texts, or email only.
+4. Whether wholesale buyers should use a separate path.
+5. Charity auction status (date, result) before featuring it as upcoming.
+6. Original photo files and the logo as a vector or high-res PNG.

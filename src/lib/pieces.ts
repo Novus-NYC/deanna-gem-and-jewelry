@@ -1,35 +1,172 @@
 /*
- * The case. Each piece is one photo with a numbered tag.
+ * The stones, exactly as posted on their Instagram (research/BRIEF.md, "Stones posted").
+ * Photos are cropped to a square around the white gem box from the original posts.
  *
- * This list is empty on purpose: no photos of Deana's pieces were available when the site was
- * built, and nothing here may be invented. To add a piece:
- *   1. Put the photo in public/pieces/ (a JPG around 1600px on the long side is plenty).
- *   2. Add an entry below with the photo's real width and height.
- *   3. Leave out any detail you have not confirmed (stone, metal, status are optional).
+ * Availability: the ruby and the Madagascar sapphire are marked SOLD in their posts. For the
+ * others availability is not stated, so `status` stays undefined and the site says
+ * "Ask if it’s still available". Never mark a stone available without the owners confirming it.
+ * No prices: none are published.
+ *
+ * To add a stone: put a square JPG (about 1200px) in public/images/pieces/, add an entry with
+ * its real width and height, and fill in only the details the owners have stated.
  */
-export type Category = "rings" | "necklaces" | "earrings" | "bracelets" | "gems"
+export type Family = "sapphire" | "tourmaline" | "ruby"
 
-export type Piece = {
-  /** Tag number shown on the site. Keep it short and unique, e.g. "14". */
+export type Stone = {
+  /** URL-safe id, used in ?stone= links. */
   id: string
+  /** Short name for labels, e.g. "Blue star sapphire". */
   name: string
-  category: Category
+  /** The full description as posted, e.g. "Natural blue star sapphire". */
+  stone: string
+  family: Family
+  origin: string
+  /** Carat weight as posted, kept as text so "1.30" keeps its trailing zero. */
+  carat: string
+  cut: string
+  treatment?: string
+  certification?: string
+  status?: "sold"
   image: { src: string; width: number; height: number; alt: string }
-  stone?: string
-  metal?: string
-  /** Only say a piece is sold or on hold when the owner confirms it. */
-  status?: "available" | "on hold" | "sold"
 }
 
-export const categories: { id: Category; label: string; singular: string }[] = [
-  { id: "rings", label: "Rings", singular: "ring" },
-  { id: "necklaces", label: "Necklaces", singular: "necklace" },
-  { id: "earrings", label: "Earrings", singular: "pair of earrings" },
-  { id: "bracelets", label: "Bracelets", singular: "bracelet" },
-  { id: "gems", label: "Loose gems", singular: "loose gem" },
+export const families: { id: Family; label: string; plural: string }[] = [
+  { id: "sapphire", label: "Sapphires", plural: "sapphires" },
+  { id: "tourmaline", label: "Tourmalines", plural: "tourmalines" },
+  { id: "ruby", label: "Ruby", plural: "rubies" },
 ]
 
-export const pieces: Piece[] = []
+const CEYLON = "Ceylon (Sri Lanka)"
 
-export const categoryLabel = (id: Category) => categories.find((c) => c.id === id)?.label ?? id
-export const findPiece = (id: string | undefined) => pieces.find((p) => p.id === id)
+export const stones: Stone[] = [
+  {
+    id: "blue-star-sapphire-543",
+    name: "Blue star sapphire",
+    stone: "Natural blue star sapphire",
+    family: "sapphire",
+    origin: CEYLON,
+    carat: "5.43",
+    cut: "Cabochon",
+    image: {
+      src: "/images/pieces/blue-star-sapphire-543.jpg",
+      width: 1200,
+      height: 1200,
+      alt: "A round blue star sapphire cabochon with a faint six-rayed star, in a white gem box held in an open hand in sunlight",
+    },
+  },
+  {
+    id: "green-tourmaline-524",
+    name: "Green tourmaline",
+    stone: "Natural (unheated) green tourmaline",
+    family: "tourmaline",
+    origin: CEYLON,
+    carat: "5.24",
+    cut: "Octagonal step cut",
+    treatment: "Unheated",
+    image: {
+      src: "/images/pieces/green-tourmaline-524.jpg",
+      width: 840,
+      height: 840,
+      alt: "A bright green rectangular step-cut tourmaline centered in a white gem box on woven cloth",
+    },
+  },
+  {
+    id: "star-sapphire-443",
+    name: "Star sapphire",
+    stone: "Natural star sapphire",
+    family: "sapphire",
+    origin: CEYLON,
+    carat: "4.43",
+    cut: "Cabochon",
+    image: {
+      src: "/images/pieces/star-sapphire-443.jpg",
+      width: 1200,
+      height: 1200,
+      alt: "An oval grey-violet star sapphire cabochon with a sharp six-rayed star, in a white gem box held between finger and thumb",
+    },
+  },
+  {
+    id: "green-tourmaline-357",
+    name: "Green tourmaline",
+    stone: "Natural green tourmaline",
+    family: "tourmaline",
+    origin: CEYLON,
+    carat: "3.57",
+    cut: "Cushion, mixed cut",
+    image: {
+      src: "/images/pieces/green-tourmaline-357.jpg",
+      width: 680,
+      height: 680,
+      alt: "A deep green cushion-cut tourmaline, dark at the edges and bright at the center, in a white gem box on woven cloth",
+    },
+  },
+  {
+    id: "star-sapphire-417",
+    name: "Star sapphire",
+    stone: "Natural star sapphire",
+    family: "sapphire",
+    origin: CEYLON,
+    carat: "4.17",
+    cut: "Cabochon",
+    image: {
+      src: "/images/pieces/star-sapphire-417.jpg",
+      width: 1200,
+      height: 1200,
+      alt: "An oval pink-violet star sapphire cabochon with a bright six-rayed star, in a white gem box resting in an open hand",
+    },
+  },
+  {
+    id: "ruby-madagascar-130",
+    name: "Ruby",
+    stone: "Natural unheated ruby, red",
+    family: "ruby",
+    origin: "Madagascar",
+    carat: "1.30",
+    cut: "Square cushion, mixed cut",
+    treatment: "Unheated",
+    certification: "GIA certified",
+    status: "sold",
+    image: {
+      src: "/images/pieces/ruby-madagascar-130.jpg",
+      width: 900,
+      height: 900,
+      alt: "A small red square cushion-cut ruby centered in a white gem box on woven cloth",
+    },
+  },
+  {
+    id: "sapphire-madagascar-110",
+    name: "Sapphire",
+    stone: "Natural unheated sapphire",
+    family: "sapphire",
+    origin: "Madagascar",
+    carat: "1.10",
+    cut: "Oval, mixed cut",
+    treatment: "Unheated",
+    certification: "GIA certified",
+    status: "sold",
+    image: {
+      src: "/images/pieces/sapphire-madagascar-110.jpg",
+      width: 980,
+      height: 980,
+      alt: "A small blue oval sapphire centered in a white gem box on woven cloth",
+    },
+  },
+]
+
+/** Stones the owners have not marked sold. Counts on the site use these. */
+export const openStones = stones.filter((s) => s.status !== "sold")
+
+export const findStone = (id: string | undefined) => stones.find((s) => s.id === id)
+export const stoneTitle = (s: Stone) => `${s.carat} ct ${s.name.toLowerCase()}`
+
+/*
+ * Custom jewelry, made to order: kinds from their Google Form, booth poster and the Chamber video.
+ * There are no photos of finished custom pieces other than the charity ring, so these are not
+ * shown as a gallery.
+ */
+export const customKinds = [
+  { id: "rings", label: "Rings", detail: "Including engagement rings and wedding bands" },
+  { id: "necklaces", label: "Necklaces", detail: "And pendants" },
+  { id: "earrings", label: "Earrings", detail: "" },
+  { id: "bracelets", label: "Bracelets", detail: "And bangles" },
+] as const

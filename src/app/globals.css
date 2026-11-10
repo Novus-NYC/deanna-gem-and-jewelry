@@ -9,12 +9,15 @@
   }
   body {
     margin: 0;
-    background: #f4efe6;
-    color: #1a1414;
+    background: #f5f0e6;
+    color: #0e0d0b;
     font-family: var(--font-sans), system-ui, sans-serif;
     font-size: 1.0625rem;
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
+    /* Focus color for the current surface. Each surface class below swaps it so the ring
+       always contrasts (3:1 or better) with the background around the control. */
+    --focus: #1f3d8c;
   }
   *,
   *::before,
@@ -22,11 +25,11 @@
     box-sizing: border-box;
   }
   ::selection {
-    background: #d6e6ec;
-    color: #1a1414;
+    background: #e0c06a;
+    color: #0e0d0b;
   }
   :focus-visible {
-    outline: 2px solid currentColor;
+    outline: 2px solid var(--focus);
     outline-offset: 3px;
   }
 }
@@ -44,7 +47,34 @@
     }
   }
 
-  /* Small caps label, used for tag numbers and field names. Never for essential sentences. */
+  /* Surfaces: background, text and the focus color that reads against them. */
+  .surface-onyx {
+    background: #0e0d0b;
+    color: #f5f0e6;
+    --focus: #e0c06a;
+  }
+  .surface-soft {
+    background: #1c1a16;
+    color: #f5f0e6;
+    --focus: #e0c06a;
+  }
+  .surface-paper {
+    background: #f5f0e6;
+    color: #0e0d0b;
+    --focus: #1f3d8c;
+  }
+  .surface-warm {
+    background: #e9e1d0;
+    color: #0e0d0b;
+    --focus: #1f3d8c;
+  }
+  .surface-sapphire {
+    background: #1f3d8c;
+    color: #f5f0e6;
+    --focus: #e0c06a;
+  }
+
+  /* Spaced capitals, like "IMPORTS LLC" under the logo. For labels, never for whole sentences. */
   .tag-label {
     font-family: var(--font-sans), system-ui, sans-serif;
     font-size: 0.8125rem;
@@ -53,7 +83,7 @@
     text-transform: uppercase;
   }
 
-  /* Buttons: square-cornered like a tag, never pills. */
+  /* Buttons: square-cornered like a gem box, never pills. */
   .btn {
     display: inline-flex;
     min-height: 48px;
@@ -63,88 +93,127 @@
     padding: 0 1.4rem;
     font-weight: 500;
     letter-spacing: 0.04em;
-    transition: background-color 250ms, color 250ms, border-color 250ms, transform 250ms;
+    transition: background-color 250ms, color 250ms, border-color 250ms;
   }
-  .btn-ivory {
-    background: #f4efe6;
-    color: #4a0f1f;
+  .btn:focus-visible {
+    outline: 3px solid var(--focus);
+    outline-offset: 3px;
   }
-  .btn-ivory:hover {
-    background: #d6e6ec;
-    color: #1a1414;
+  .btn-gold {
+    background: #c9a33f;
+    color: #0e0d0b;
   }
-  .btn-garnet {
-    background: #4a0f1f;
-    color: #f4efe6;
+  .btn-gold:hover {
+    background: #e0c06a;
   }
-  .btn-garnet:hover {
-    background: #1a1414;
+  .btn-paper {
+    background: #f5f0e6;
+    color: #0e0d0b;
+  }
+  .btn-paper:hover {
+    background: #e0c06a;
+  }
+  .btn-sapphire {
+    background: #1f3d8c;
+    color: #f5f0e6;
+  }
+  .btn-sapphire:hover {
+    background: #16306f;
   }
   .btn-line {
     border: 1px solid currentColor;
   }
   .btn-line:hover {
-    background: rgba(214, 230, 236, 0.16);
+    background: rgba(201, 163, 63, 0.16);
   }
 
+  /* Underlined text link. The line sits on the inner .u span, right under the words, not at the
+     bottom of the 44px tap box. */
   .link-under {
+    display: inline-flex;
+    min-height: 44px;
+    align-items: center;
+  }
+  .link-under .u {
     background-image: linear-gradient(currentColor, currentColor);
     background-size: 100% 1px;
     background-position: 0 100%;
     background-repeat: no-repeat;
+    padding-bottom: 2px;
     transition: background-size 300ms;
   }
-  .link-under:hover {
+  .link-under:hover .u {
     background-size: 0% 1px;
     background-position: 100% 100%;
   }
 
   /*
-   * The jeweler's tag: a card with the string end clipped to a point and a real punched hole
-   * (masked out, so whatever is behind the tag shows through it). A faint ring edges the hole.
+   * The gem-paper label: the card a dealer writes a stone's details on. String end clipped to a
+   * point and a real punched hole (masked, so the surface behind shows through). Labels only sit
+   * on onyx, sapphire or photo edges, never on paper, so the shape always reads.
    */
   .tag {
     position: relative;
     background:
-      radial-gradient(circle at 1.15rem 50%, transparent 0.36rem, rgba(26, 20, 20, 0.22) 0.37rem, transparent 0.46rem),
-      #f4efe6;
-    color: #1a1414;
+      radial-gradient(circle at 1.15rem 50%, transparent 0.36rem, rgba(14, 13, 11, 0.25) 0.37rem, transparent 0.46rem),
+      #f5f0e6;
+    color: #0e0d0b;
     clip-path: polygon(0.75rem 0, 100% 0, 100% 100%, 0.75rem 100%, 0 50%);
     -webkit-mask: radial-gradient(circle at 1.15rem 50%, transparent 0.32rem, #000 0.34rem);
     mask: radial-gradient(circle at 1.15rem 50%, transparent 0.32rem, #000 0.34rem);
     padding: 0.9rem 1.25rem 0.9rem 2.35rem;
+    --tag-focus: #1f3d8c;
   }
-  .tag.tag-garnet {
+  .tag.tag-dark {
     background:
-      radial-gradient(circle at 1.15rem 50%, transparent 0.36rem, rgba(244, 239, 230, 0.35) 0.37rem, transparent 0.46rem),
-      #4a0f1f;
-    color: #f4efe6;
+      radial-gradient(circle at 1.15rem 50%, transparent 0.36rem, rgba(245, 240, 230, 0.4) 0.37rem, transparent 0.46rem),
+      #1c1a16;
+    color: #f5f0e6;
+    box-shadow: inset 0 0 0 1px rgba(245, 240, 230, 0.35);
+    --tag-focus: #e0c06a;
+  }
+  /* clip-path and the mask would cut an outline off, so labels that are buttons show focus inside. */
+  .tag:focus-visible {
+    outline: none;
+    box-shadow: inset 0 0 0 3px var(--tag-focus);
+  }
+
+  /* Step-cut frame for photos of people and events: an emerald cut's octagon, with a gold line. */
+  .facet {
+    clip-path: polygon(12% 0, 88% 0, 100% 9.6%, 100% 90.4%, 88% 100%, 12% 100%, 0 90.4%, 0 9.6%);
   }
 }
 
-/* Scroll reveal: fade and lift, or an uncovering mask for photos. */
+/* Scroll reveal: fade and lift, or a lens opening for the loupe. The hidden start state only
+   applies when scripts run, so the page reads fully without JavaScript. */
 .reveal {
-  opacity: 0;
-  transform: translateY(18px);
   transition: opacity 650ms cubic-bezier(0.22, 0.61, 0.36, 1), transform 650ms cubic-bezier(0.22, 0.61, 0.36, 1);
   transition-delay: calc(var(--i, 0) * 70ms);
+}
+/* The clip sits on the child: Chrome's IntersectionObserver honors the target's own clip-path,
+   so a fully clipped observed element would never count as visible. */
+.reveal-loupe > * {
+  transition: clip-path 700ms cubic-bezier(0.22, 0.61, 0.36, 1);
+  transition-delay: calc(var(--i, 0) * 70ms);
+}
+@media (scripting: enabled) {
+  .reveal {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  .reveal-loupe > * {
+    clip-path: circle(0% at 50% 50%);
+  }
 }
 .reveal.is-in {
   opacity: 1;
   transform: none;
 }
-/* The clip sits on the child: Chrome's IntersectionObserver honors the target's own clip-path,
-   so a fully clipped observed element would never count as visible. */
-.reveal-loupe > * {
-  clip-path: circle(0% at 50% 50%);
-  transition: clip-path 700ms cubic-bezier(0.22, 0.61, 0.36, 1);
-  transition-delay: calc(var(--i, 0) * 70ms);
-}
 .reveal-loupe.is-in > * {
   clip-path: circle(75% at 50% 50%);
 }
 
-/* A hanging tag settles once on load (one small swing), then stays still. */
+/* A hanging label settles once on load (one small swing), then stays still. */
 @keyframes settle {
   0% {
     transform: rotate(-7deg);
@@ -157,7 +226,7 @@
   }
 }
 .swing {
-  transform-origin: 50% 0;
+  transform-origin: 1.15rem 0;
   transform: rotate(-2deg);
   animation: settle 1.4s cubic-bezier(0.22, 0.61, 0.36, 1) 0.2s both;
 }
@@ -172,15 +241,17 @@
 @media (prefers-reduced-motion: reduce) {
   .reveal,
   .reveal-loupe > * {
-    clip-path: none;
-    transition: none;
+    opacity: 1 !important;
+    transform: none !important;
+    clip-path: none !important;
+    transition: none !important;
   }
   .swing {
     animation: none;
   }
   .loupe-zoom img,
   .btn,
-  .link-under {
+  .link-under .u {
     transition: none;
   }
   .loupe-zoom:hover img {

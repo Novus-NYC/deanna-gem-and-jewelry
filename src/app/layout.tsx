@@ -14,23 +14,24 @@ const display = Bodoni_Moda({
 const sans = Jost({ subsets: ["latin"], variable: "--font-sans", display: "swap" })
 
 const description =
-  "Browse the case at Deana Gem and Jewelry: rings, necklaces, earrings, bracelets and loose gems, each with a numbered tag you can ask about."
+  "Natural Ceylon (Sri Lankan) gemstones and custom jewelry from a family business on Staten Island, New York. Browse the stones and ask if one is still available."
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
-  title: { default: site.name, template: `%s · ${site.name}` },
+  title: { default: `${site.name} | Natural gemstones and custom jewelry`, template: `%s · ${site.name}` },
   description,
+  applicationName: site.name,
   openGraph: {
     title: site.name,
     description,
-    siteName: site.name,
+    siteName: site.legalName,
     type: "website",
-    images: [{ url: "/og.png", width: 1200, height: 630, alt: "Deana Gem and Jewelry, in ivory on garnet, with a jeweler's tag" }],
+    locale: "en_US",
   },
-  twitter: { card: "summary_large_image", title: site.name, description, images: ["/og.png"] },
+  twitter: { card: "summary_large_image", title: site.name, description },
 }
 
-export const viewport: Viewport = { themeColor: "#4a0f1f" }
+export const viewport: Viewport = { themeColor: "#0e0d0b" }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -38,7 +39,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className="flex min-h-screen flex-col">
         <a
           href="#main"
-          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:bg-ivory focus:px-4 focus:py-3 focus:text-ink"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:bg-paper focus:px-4 focus:py-3 focus:text-onyx"
         >
           Skip to content
         </a>

@@ -1,168 +1,234 @@
+import type { Metadata } from "next"
+import Image from "next/image"
 import Link from "next/link"
+import { Crystal } from "@/lib/components/crystal"
+import { FacetPhoto } from "@/lib/components/facet-photo"
 import { Loupe } from "@/lib/components/loupe"
 import { Reveal } from "@/lib/components/reveal"
 import { Tag } from "@/lib/components/tag"
-import { photos } from "@/lib/images"
-import { categories, pieces } from "@/lib/pieces"
-import { inquiryOpen } from "@/lib/site"
+import { customKinds, findStone, openStones, stones } from "@/lib/pieces"
+import { photos } from "@/lib/photos"
+import { mailHref, site, smsHref, telHref } from "@/lib/site"
 
-const steps = [
-  { label: "First", title: "Look", body: "Open the case and browse the pieces by kind." },
-  { label: "Then", title: "Note the tag", body: "Every piece wears a numbered tag, like it would in a shop window." },
-  { label: "Last", title: "Ask", body: "Send the number and ask if it is still available." },
-]
+export const metadata: Metadata = {
+  alternates: { canonical: "/" },
+}
+
+const feature = findStone("green-tourmaline-524")!
+const soldCount = stones.length - openStones.length
 
 export default function Home() {
   return (
     <>
-      {/* 1. The opening: the name set huge on garnet velvet, a stone seen through a loupe, and a tag hanging off the bar. */}
-      <section className="relative overflow-hidden bg-garnet text-ivory">
-        <div className="container-site grid gap-12 pb-20 pt-14 md:pb-28 md:pt-20 lg:grid-cols-12 lg:gap-6">
-          <div className="lg:col-span-7">
-            <p className="tag-label text-loupe">Jewelry and loose gems</p>
+      {/* 1. Onyx, like the logo ground: the name set huge, gold crystal lines behind a star sapphire in a loupe, and its gem-paper label. */}
+      <section className="surface-onyx relative overflow-hidden">
+        <div className="container-site grid gap-14 pb-24 pt-12 md:pb-28 md:pt-20 lg:grid-cols-12 lg:gap-6">
+          <div className="relative z-10 lg:col-span-7">
+            <p className="tag-label text-gold">Natural gemstones &amp; jewelry, New York</p>
             <h1 className="mt-6 font-display">
-              <span className="block text-mega italic">Deana</span>
-              <span className="mt-3 block text-d3 md:mt-4">Gem and Jewelry</span>
+              <span className="block text-mega italic">Deanna</span>
+              <span className="mt-3 block text-d3 md:mt-4">Gem &amp; Jewelry Imports</span>
             </h1>
-            <p className="mt-8 max-w-[34ch] text-[1.2rem] leading-snug text-ivory/90 md:text-[1.35rem]">
-              Browse the pieces in the case, then ask about the one you like by its tag number.
+            <p className="mt-8 max-w-[36ch] text-[1.2rem] leading-snug text-paper/90 md:text-[1.35rem]">
+              We bring natural gemstones from Ceylon, Sri Lanka, to New York. Browse the stones, then ask if one is still available.
             </p>
-            <div className="mt-10 flex flex-wrap items-center gap-x-6 gap-y-4">
-              <Link href="/collection" className="btn btn-ivory">
-                Browse the case <span aria-hidden="true">→</span>
+            <div className="mt-10 flex flex-wrap items-center gap-x-7 gap-y-4">
+              <Link href="/gemstones" className="btn btn-gold">
+                See the gemstones <span aria-hidden="true">→</span>
               </Link>
-              <Link href="/contact" className="link-under inline-flex min-h-[44px] items-center">
-                {inquiryOpen ? "Ask about a piece" : "Inquiries open soon"}
+              <Link href="/custom" className="link-under">
+                <span className="u">Or have a piece made</span>
               </Link>
             </div>
           </div>
           <div className="relative lg:col-span-5">
+            <Crystal className="pointer-events-none absolute -right-16 -top-10 h-[130%] w-auto text-gold/45 sm:-right-4 lg:-right-24 lg:-top-16" />
             <Loupe
-              photo={photos.amethyst}
+              photo={photos.heroSapphire}
               priority
-              focus="40% 55%"
-              sizes="(min-width: 1024px) 38vw, 86vw"
-              className="ml-auto w-[86%] max-w-[520px] lg:mt-6 lg:w-full"
+              sizes="(min-width: 1024px) 34vw, 78vw"
+              className="relative ml-auto w-[78%] max-w-[480px] lg:mt-8 lg:w-[88%]"
             />
-            <div className="swing absolute -bottom-6 left-0 w-[15rem] sm:left-4 lg:-left-16 lg:bottom-6">
-              <Tag label="How to ask" string>
-                <p className="font-display text-[1.45rem] italic leading-tight">Every piece wears a tag. Ask by its number.</p>
+            <div className="swing absolute -bottom-10 left-0 w-[15.5rem] sm:left-6 lg:-left-10 lg:bottom-0">
+              <Tag label="5.43 ct · Ceylon" string>
+                <p className="font-display text-[1.45rem] italic leading-tight">Natural blue star sapphire</p>
+                <Link href="/contact?stone=blue-star-sapphire-543" className="link-under -mb-2 text-[0.95rem]">
+                  <span className="u">Ask if it’s still available</span>
+                </Link>
               </Tag>
             </div>
           </div>
         </div>
       </section>
 
-      {/* 2. How it works: three tags hanging from one string at different heights, beside the heading. */}
-      <section aria-labelledby="how-title" className="bg-ivory">
-        <div className="container-site grid gap-14 py-20 md:py-28 lg:grid-cols-12 lg:items-start">
-          <Reveal className="lg:col-span-5">
-            <h2 id="how-title" className="font-display text-d2">
-              Every piece <span className="italic">wears a tag.</span>
-            </h2>
-            <p className="mt-6 max-w-[40ch] text-[1.1rem] text-ink-soft">
-              The tag is how you ask. It carries the piece&apos;s number, so a short note is enough.
-            </p>
-          </Reveal>
-          <div className="relative lg:col-span-7">
-            <svg aria-hidden="true" viewBox="0 0 700 60" preserveAspectRatio="none" className="absolute inset-x-0 top-0 hidden h-14 w-full text-garnet/60 md:block">
-              <path d="M0 10 C 180 70, 520 70, 700 10" stroke="currentColor" strokeWidth="1.5" fill="none" />
-            </svg>
-            <ol className="grid gap-6 md:grid-cols-3 md:gap-5 md:pt-10">
-              {steps.map((s, i) => (
-                <Reveal as="li" i={i} key={s.title} className={i === 1 ? "md:mt-10" : i === 2 ? "md:-mt-2" : ""}>
-                  <div className={i % 2 ? "md:rotate-[1.5deg]" : "md:-rotate-[1.5deg]"}>
-                    <div className="tag tag-garnet">
-                      <p className="tag-label text-loupe">{s.label}</p>
-                      <h3 className="mt-2 font-display text-[1.9rem] italic leading-none">{s.title}</h3>
-                      <p className="mt-3 text-ivory/90">{s.body}</p>
-                    </div>
-                  </div>
-                </Reveal>
-              ))}
-            </ol>
+      {/* 2. The parcel ledger: one big stone on an onyx tray bleeding off the left, every posted stone as a written line on paper. */}
+      <section aria-labelledby="stones-title" className="surface-paper">
+        <div className="grid lg:grid-cols-12">
+          <div className="surface-onyx relative px-5 pb-20 pt-12 md:px-10 lg:col-span-6 lg:py-24 lg:pl-0 lg:pr-14">
+            <Reveal className="ml-auto max-w-[620px] lg:sticky lg:top-28">
+              <Image
+                src={feature.image.src}
+                alt={feature.image.alt}
+                width={feature.image.width}
+                height={feature.image.height}
+                sizes="(min-width: 1024px) 45vw, 92vw"
+                className="block h-auto w-full"
+              />
+              <Tag label={`${feature.carat} ct · Ceylon`} className="-mt-10 ml-4 w-fit md:ml-8">
+                <p className="font-display text-[1.35rem] italic leading-tight">Green tourmaline, step cut</p>
+              </Tag>
+            </Reveal>
           </div>
-        </div>
-      </section>
-
-      {/* 3. The case: what kinds of pieces it holds, as big rows on ink. A loupe breaks out of the top edge. */}
-      <section aria-labelledby="case-title" className="relative bg-ink text-ivory">
-        <div className="pointer-events-none absolute -top-16 right-5 w-36 sm:w-48 md:-top-24 md:right-10 md:w-64">
-          <Loupe photo={photos.blue} sizes="16rem" />
-        </div>
-        <div className="container-site py-20 md:py-28">
-          <Reveal>
-            <p className="tag-label text-loupe">In the case</p>
-            <h2 id="case-title" className="mt-4 max-w-[12ch] font-display text-d1">
-              Browse <span className="italic">by kind.</span>
-            </h2>
-          </Reveal>
-          <ul className="mt-12 border-b border-ivory/20">
-            {categories.map((c, i) => {
-              const count = pieces.filter((p) => p.category === c.id).length
-              return (
-                <Reveal as="li" i={i} key={c.id}>
+          <div className="container-site py-16 md:py-24 lg:col-span-6 lg:max-w-none lg:pl-14 lg:pr-10">
+            <Reveal>
+              <h2 id="stones-title" className="font-display text-d2">
+                From Ceylon, <span className="italic">in the box.</span>
+              </h2>
+              <p className="mt-5 max-w-[42ch] text-[1.1rem] text-ink-soft">
+                Every stone we’ve posted, written down the way a dealer labels a gem paper: weight, stone, origin.
+              </p>
+            </Reveal>
+            <ol className="mt-10 border-b border-onyx/15">
+              {stones.map((s, i) => (
+                <Reveal as="li" i={i % 4} key={s.id}>
                   <Link
-                    href={`/collection?category=${c.id}`}
-                    className="group -mx-5 flex min-h-[44px] flex-col gap-2 sm:flex-row sm:items-baseline sm:justify-between sm:gap-6 border-t border-ivory/20 px-5 py-5 transition-colors duration-300 hover:bg-garnet focus-visible:bg-garnet md:-mx-6 md:px-6 md:py-6"
+                    href={`/gemstones?stone=${s.id}`}
+                    className="group grid min-h-[44px] grid-cols-[5.5rem_1fr_auto] items-baseline gap-x-4 border-t border-onyx/15 py-4 hover:bg-paper-warm md:grid-cols-[7rem_1fr_auto]"
                   >
-                    <span className="font-display text-[clamp(2.4rem,6vw,5rem)] leading-none group-hover:italic">{c.label}</span>
-                    <span className="tag-label shrink-0 text-ivory/80">
-                      {count > 0 ? `${count} in the case` : "Look inside"}
-                      <span aria-hidden="true" className="ml-2 inline-block transition-transform duration-300 group-hover:translate-x-1">
-                        →
+                    <span className="font-display text-[2.1rem] leading-none md:text-[2.6rem]">{s.carat}</span>
+                    <span>
+                      <span className="block font-display text-[1.3rem] italic leading-tight group-hover:text-sapphire">{s.name}</span>
+                      <span className="block text-[0.95rem] text-ink-soft">
+                        {s.origin}, {s.cut.toLowerCase()}
                       </span>
+                    </span>
+                    <span className={`tag-label ${s.status === "sold" ? "text-ruby" : "text-sapphire"}`}>
+                      {s.status === "sold" ? "Sold" : "Ask"}
+                      {s.status !== "sold" && <span aria-hidden="true"> →</span>}
                     </span>
                   </Link>
                 </Reveal>
-              )
-            })}
-          </ul>
-        </div>
-      </section>
-
-      {/* 4. Look closer: one huge loupe bleeding off the left edge on cold loupe light. */}
-      <section aria-labelledby="closer-title" className="overflow-hidden bg-loupe">
-        <div className="container-site grid items-center gap-10 py-20 md:py-24 lg:grid-cols-12">
-          <div className="lg:col-span-6">
-            <Loupe
-              photo={photos.garnet}
-              focus="40% 52%"
-              sizes="(min-width: 1024px) 50vw, 100vw"
-              className="-ml-[30%] w-[130%] max-w-none sm:-ml-[18%] sm:w-[110%] lg:-ml-[40%] lg:w-[140%]"
-            />
+              ))}
+            </ol>
+            <p className="mt-6 text-ink-soft">
+              Weights in carats. {openStones.length} to ask about, {soldCount} sold.{" "}
+              <Link href="/gemstones" className="link-under text-onyx">
+                <span className="u">See them full size</span>
+              </Link>
+            </p>
           </div>
-          <Reveal className="lg:col-span-5 lg:col-start-8">
-            <h2 id="closer-title" className="font-display text-d1">
-              Look <span className="italic">closer.</span>
-            </h2>
-            <p className="mt-6 max-w-[38ch] text-[1.15rem]">
-              In the case, every photo opens full size, so you can see the cut, the color and the setting before you ask.
-            </p>
-            <Link href="/collection" className="btn btn-garnet mt-8">
-              Open the case <span aria-hidden="true">→</span>
-            </Link>
-          </Reveal>
         </div>
       </section>
 
-      {/* 5. The ask, on garnet: closes the loop back to the tag. */}
-      <section aria-labelledby="ask-title" className="bg-garnet text-ivory">
-        <div className="container-site flex flex-col gap-10 py-20 md:flex-row md:items-end md:justify-between md:py-28">
-          <Reveal>
-            <h2 id="ask-title" className="font-display text-d1">
-              Seen one <span className="block italic">you like?</span>
-            </h2>
-          </Reveal>
-          <Reveal i={1} className="md:max-w-sm">
-            <p className="text-[1.15rem] text-ivory/90">
-              {inquiryOpen
-                ? "Send its tag number and ask if it is still available."
-                : "Online inquiries open soon. Browse the case now and note the tags you like."}
+      {/* 3. Sapphire blue, full bleed: custom jewelry as big written rows, the charity ring breaking the top edge. */}
+      <section aria-labelledby="custom-title" className="surface-sapphire relative">
+        <div className="container-site grid gap-14 py-20 md:py-28 lg:grid-cols-12 lg:gap-10">
+          <div className="lg:col-span-7">
+            <Reveal>
+              <p className="tag-label text-gold-light">Custom jewelry</p>
+              <h2 id="custom-title" className="mt-4 font-display text-d1">
+                Made to order, <span className="block italic">in Sri Lanka.</span>
+              </h2>
+              <p className="mt-6 max-w-[46ch] text-[1.15rem] text-paper/90">
+                It starts with a one-on-one consultation. Our designers and jewelers in Sri Lanka make the piece, and it is imported and delivered to you.
+              </p>
+            </Reveal>
+            <ul className="mt-10 border-b border-paper/25">
+              {customKinds.map((k, i) => (
+                <Reveal as="li" i={i} key={k.id} className="flex flex-col gap-1 border-t border-paper/25 py-4 sm:flex-row sm:items-baseline sm:justify-between sm:gap-6">
+                  <span className="font-display text-[clamp(2.2rem,5vw,3.6rem)] leading-none">{k.label}</span>
+                  {k.detail && <span className="text-paper/85">{k.detail}</span>}
+                </Reveal>
+              ))}
+            </ul>
+            <div className="mt-10 flex flex-wrap items-center gap-x-7 gap-y-4">
+              <a href={site.customForm} target="_blank" rel="noreferrer" className="btn btn-paper">
+                Start a custom piece <span aria-hidden="true">↗</span>
+                <span className="sr-only"> (opens our Google Form in a new tab)</span>
+              </a>
+              <Link href="/custom" className="link-under">
+                <span className="u">How custom pieces are made</span>
+              </Link>
+            </div>
+          </div>
+          <div className="lg:col-span-4 lg:col-start-9">
+            <FacetPhoto photo={photos.charityRing} sizes="(min-width: 1024px) 30vw, 80vw" className="mx-auto w-[80%] max-w-[380px] lg:-mt-48 lg:w-full" />
+            <p className="mt-8 max-w-[34ch] text-paper/90">
+              The custom ruby and diamond ring featured in our first charity auction, with Humble Heroes of FDNY.
             </p>
-            <Link href={inquiryOpen ? "/contact" : "/collection"} className="btn btn-ivory mt-6">
-              {inquiryOpen ? "Ask about its tag" : "Browse the case"} <span aria-hidden="true">→</span>
-            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* 4. Onyx: the family. The founders at their FerryHawks table, their own words set large. */}
+      <section aria-labelledby="story-title" className="surface-onyx overflow-hidden">
+        <div className="container-site grid items-center gap-14 py-20 md:py-28 lg:grid-cols-12 lg:gap-6">
+          <div className="lg:col-span-5">
+            <FacetPhoto photo={photos.ferryhawks} offset="left" sizes="(min-width: 1024px) 38vw, 90vw" className="mr-auto w-[88%] max-w-[480px] lg:w-full" />
+          </div>
+          <div className="lg:col-span-6 lg:col-start-7">
+            <Reveal>
+              <h2 id="story-title" className="tag-label text-gold">
+                Named after our daughter
+              </h2>
+              <blockquote className="mt-6">
+                <p className="font-display text-[clamp(2rem,4vw,3.4rem)] italic leading-[1.05]">
+                  “Founded by a first generation Sri Lankan-American and named after our daughter, Deanna (Our Precious Gem).”
+                </p>
+              </blockquote>
+              <p className="mt-8 max-w-[44ch] text-[1.1rem] text-paper/85">
+                We are Dananjaya and Disni Balasuriya, husband and wife. We started the business in {site.since}, on Staten Island.
+              </p>
+              <Link href="/about" className="btn btn-gold mt-8">
+                Read our story <span aria-hidden="true">→</span>
+              </Link>
+            </Reveal>
+          </div>
+        </div>
+      </section>
+
+      {/* 5. Warm paper close: the question in big type, then every real way to ask, as a written list. */}
+      <section aria-labelledby="ask-title" className="surface-warm">
+        <div className="container-site grid gap-12 py-20 md:py-28 lg:grid-cols-12">
+          <Reveal className="lg:col-span-6">
+            <h2 id="ask-title" className="font-display text-d1">
+              Seen a stone <span className="block italic">you like?</span>
+            </h2>
+            <p className="mt-6 max-w-[38ch] text-[1.1rem] text-ink-soft">
+              Ask if it’s still available. Text or call, email, or send us a DM on Instagram.
+            </p>
+          </Reveal>
+          <Reveal i={1} className="lg:col-span-5 lg:col-start-8">
+            <ul className="border-b border-onyx/20 text-[1.15rem]">
+              {[
+                { label: "Text", value: site.inquiry.phone, href: smsHref("Hello, I’m asking about a stone on your website.") },
+                { label: "Call", value: site.inquiry.phone, href: telHref },
+                { label: "Email", value: "Write to us", href: mailHref("Asking about a stone") },
+                { label: "Instagram", value: site.instagram.handle, href: site.instagram.url, external: true },
+              ].map((c) => (
+                <li key={c.label} className="border-t border-onyx/20">
+                  <a
+                    href={c.href}
+                    {...(c.external ? { target: "_blank", rel: "noreferrer" } : {})}
+                    className="group flex min-h-[60px] flex-col justify-center gap-x-4 py-2 hover:text-sapphire sm:flex-row sm:items-center sm:justify-between"
+                  >
+                    <span className="tag-label text-ink-soft">{c.label}</span>
+                    <span className="font-display text-[1.3rem] italic sm:text-right">
+                      {c.value}
+                      {c.external && <span className="sr-only"> (opens in a new tab)</span>}
+                    </span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+            <div className="mt-8 flex flex-wrap gap-x-7 gap-y-2">
+              <Link href="/contact" className="btn btn-sapphire">
+                Write a note <span aria-hidden="true">→</span>
+              </Link>
+              <a href={mailHref("Wholesale gemstones")} className="link-under">
+                <span className="u">Jewelers: ask about wholesale</span>
+              </a>
+            </div>
           </Reveal>
         </div>
       </section>

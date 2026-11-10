@@ -1,5 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <rect width="64" height="64" rx="10" fill="#4a0f1f"/>
-  <path fill="#f4efe6" fill-rule="evenodd" d="M10 32 L19 15 H56 V49 H19 Z M19.5 32 a3.2 3.2 0 1 0 6.4 0 a3.2 3.2 0 1 0 -6.4 0 Z"/>
-  <text x="41.5" y="43" text-anchor="middle" font-family="Didot, 'Bodoni 72', 'Bodoni Moda', Georgia, serif" font-style="italic" font-size="30" fill="#4a0f1f">D</text>
+  <rect width="64" height="64" rx="10" fill="#0e0d0b"/>
+  <g fill="none" stroke="#c9a33f" stroke-width="2.4" stroke-linejoin="round">
+    <path d="M33 6 L21 18 L24 52 L34 58 L44 52 L46 18 Z"/>
+    <path d="M33 6 L34 21 L21 18 M34 21 L46 18 M34 21 L34 58"/>
+  </g>
+  <text x="31" y="44" text-anchor="middle" font-family="Didot, 'Bodoni 72', 'Bodoni Moda', Georgia, serif" font-size="30" fill="#f5f0e6">D</text>
 </svg>
