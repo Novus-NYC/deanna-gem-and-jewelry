@@ -31,7 +31,7 @@ export default async function GemstonesPage({ searchParams }: Props) {
           </h1>
           <div className="mt-8 grid gap-4 lg:grid-cols-12">
             <p className="max-w-[44ch] text-[1.15rem] text-ink-soft lg:col-span-6">
-              Each stone as we posted it, in its gem box. Prices aren’t listed. {openStones.length} of {stones.length} are open to ask about: open one to see it full size, then ask if it’s still available.
+              Each stone as we posted it, up close. Prices aren’t listed. {openStones.length} of {stones.length} are open to ask about: open one to see it full size, then ask if it’s still available.
             </p>
             <div className="lg:col-span-3 lg:col-start-7">
               <a href={mailHref("Wholesale gemstones")} className="link-under">

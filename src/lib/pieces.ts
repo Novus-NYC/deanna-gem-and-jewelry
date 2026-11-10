@@ -1,6 +1,7 @@
 /*
  * The stones, exactly as posted on their Instagram (research/BRIEF.md, "Stones posted").
- * Photos are cropped to a square around the white gem box from the original posts.
+ * Photos are tight square crops around each gem from the original posts (720px), so the stone fills
+ * the frame and the white gem box it was shot in reads only as a pale field behind it.
  *
  * Availability: the ruby and the Madagascar sapphire are marked SOLD in their posts. For the
  * others availability is not stated, so `status` stays undefined and the site says
@@ -48,10 +49,10 @@ export const stones: Stone[] = [
     carat: "5.43",
     cut: "Cabochon",
     image: {
-      src: "/images/pieces/blue-star-sapphire-543.jpg",
-      width: 1200,
-      height: 1200,
-      alt: "A round blue star sapphire cabochon with a faint six-rayed star, in a white gem box held in an open hand in sunlight",
+      src: "/images/pieces/blue-star-sapphire-543-close.jpg",
+      width: 720,
+      height: 720,
+      alt: "A round blue star sapphire cabochon with a faint six-rayed star, on the pale floor of its gem box in sunlight",
     },
   },
   {
@@ -64,10 +65,10 @@ export const stones: Stone[] = [
     cut: "Octagonal step cut",
     treatment: "Unheated",
     image: {
-      src: "/images/pieces/green-tourmaline-524.jpg",
-      width: 840,
-      height: 840,
-      alt: "A bright green rectangular step-cut tourmaline centered in a white gem box on woven cloth",
+      src: "/images/pieces/green-tourmaline-524-close.jpg",
+      width: 720,
+      height: 720,
+      alt: "A bright green rectangular step-cut tourmaline, its facets showing as dark and light bands",
     },
   },
   {
@@ -79,10 +80,10 @@ export const stones: Stone[] = [
     carat: "4.43",
     cut: "Cabochon",
     image: {
-      src: "/images/pieces/star-sapphire-443.jpg",
-      width: 1200,
-      height: 1200,
-      alt: "An oval grey-violet star sapphire cabochon with a sharp six-rayed star, in a white gem box held between finger and thumb",
+      src: "/images/pieces/star-sapphire-443-close.jpg",
+      width: 720,
+      height: 720,
+      alt: "An oval grey-violet star sapphire cabochon with a sharp six-rayed star",
     },
   },
   {
@@ -94,10 +95,10 @@ export const stones: Stone[] = [
     carat: "3.57",
     cut: "Cushion, mixed cut",
     image: {
-      src: "/images/pieces/green-tourmaline-357.jpg",
-      width: 680,
-      height: 680,
-      alt: "A deep green cushion-cut tourmaline, dark at the edges and bright at the center, in a white gem box on woven cloth",
+      src: "/images/pieces/green-tourmaline-357-close.jpg",
+      width: 720,
+      height: 720,
+      alt: "A deep green cushion-cut tourmaline, dark at the edges and bright at the center",
     },
   },
   {
@@ -109,10 +110,10 @@ export const stones: Stone[] = [
     carat: "4.17",
     cut: "Cabochon",
     image: {
-      src: "/images/pieces/star-sapphire-417.jpg",
-      width: 1200,
-      height: 1200,
-      alt: "An oval pink-violet star sapphire cabochon with a bright six-rayed star, in a white gem box resting in an open hand",
+      src: "/images/pieces/star-sapphire-417-close.jpg",
+      width: 720,
+      height: 720,
+      alt: "An oval pink-violet star sapphire cabochon with a bright six-rayed star",
     },
   },
   {
@@ -127,10 +128,10 @@ export const stones: Stone[] = [
     certification: "GIA certified",
     status: "sold",
     image: {
-      src: "/images/pieces/ruby-madagascar-130.jpg",
-      width: 900,
-      height: 900,
-      alt: "A small red square cushion-cut ruby centered in a white gem box on woven cloth",
+      src: "/images/pieces/ruby-madagascar-130-close.jpg",
+      width: 720,
+      height: 720,
+      alt: "A small red square cushion-cut ruby, facets catching the light",
     },
   },
   {
@@ -145,10 +146,10 @@ export const stones: Stone[] = [
     certification: "GIA certified",
     status: "sold",
     image: {
-      src: "/images/pieces/sapphire-madagascar-110.jpg",
-      width: 980,
-      height: 980,
-      alt: "A small blue oval sapphire centered in a white gem box on woven cloth",
+      src: "/images/pieces/sapphire-madagascar-110-close.jpg",
+      width: 720,
+      height: 720,
+      alt: "A small blue oval sapphire with sparkling facets",
     },
   },
 ]

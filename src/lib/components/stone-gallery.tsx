@@ -113,7 +113,7 @@ export function StoneGallery({ stones, initialFilter, initialStone }: Props) {
                   className={`tag min-h-[44px] py-2.5 text-[0.98rem] ${on ? "" : "tag-dark hover:text-gold-light"}`}
                 >
                   {f.label}
-                  <span className={`ml-2 text-[0.85rem] ${on ? "text-ink-soft" : "text-paper/75"}`}>
+                  <span className={`ml-2 text-[0.95rem] ${on ? "text-ink-soft" : "text-paper/75"}`}>
                     {f.count > 0 ? f.count : "sold"}
                     <span className="sr-only">{f.count > 0 ? " to ask about" : ""}</span>
                   </span>

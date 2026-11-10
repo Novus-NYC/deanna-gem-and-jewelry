@@ -2,7 +2,9 @@ import type { Metadata } from "next"
 import Link from "next/link"
 import { Crystal } from "@/lib/components/crystal"
 import { FacetPhoto } from "@/lib/components/facet-photo"
+import { Loupe } from "@/lib/components/loupe"
 import { Reveal } from "@/lib/components/reveal"
+import { findStone } from "@/lib/pieces"
 import { photos } from "@/lib/photos"
 import { mailHref, site } from "@/lib/site"
 
@@ -33,6 +35,9 @@ const work = [
     link: { href: "/custom#cause-title", label: "About the auction ring" },
   },
 ]
+
+// The sharpest star of the posted stones, shown under the loupe.
+const star = findStone("star-sapphire-443")!
 
 export default function AboutPage() {
   return (
@@ -73,26 +78,37 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Sapphire: the three things we do, as an uneven ledger rather than cards. */}
-      <section aria-labelledby="work-title" className="surface-sapphire">
-        <div className="container-site py-20 md:py-28">
-          <Reveal>
-            <h2 id="work-title" className="max-w-[14ch] font-display text-d1">
-              Three things <span className="italic">we do.</span>
-            </h2>
-          </Reveal>
-          <ul className="mt-12 border-b border-paper/25">
+      {/* Sapphire: one star sapphire under the loupe, held still on the left while the three things we do read down the right. */}
+      <section aria-labelledby="work-title" className="surface-sapphire relative">
+        <div className="container-site grid gap-14 py-20 md:py-28 lg:grid-cols-12 lg:gap-10">
+          <div className="lg:col-span-5">
+            <div className="lg:sticky lg:top-28">
+              <Reveal>
+                <h2 id="work-title" className="font-display text-d1">
+                  Three things <span className="block italic">we do.</span>
+                </h2>
+              </Reveal>
+              <figure className="mt-12 w-[72%] max-w-[22rem] sm:w-[60%] lg:w-[85%]">
+                <Loupe photo={star.image} sizes="(min-width: 1024px) 30vw, 70vw" />
+                <figcaption className="mt-5 text-paper/85">
+                  <span className="tag-label text-gold-light">{star.carat} ct · Ceylon</span>
+                  <span className="mt-1 block font-display text-[1.25rem] italic">{star.stone}</span>
+                </figcaption>
+              </figure>
+            </div>
+          </div>
+          <ul className="lg:col-span-7 lg:pt-4">
             {work.map((w, i) => (
-              <Reveal as="li" i={i} key={w.title} className="grid gap-3 border-t border-paper/25 py-8 lg:grid-cols-12 lg:items-baseline lg:gap-6">
-                <h3 className="font-display text-[clamp(2rem,4vw,3.2rem)] italic leading-none lg:col-span-5">{w.title}</h3>
-                <p className="max-w-[46ch] text-[1.1rem] text-paper/90 lg:col-span-5">{w.body}</p>
-                <div className="lg:col-span-2 lg:text-right">
+              <Reveal as="li" i={i} key={w.title} className="border-t border-gold-light/50 pb-12 pt-8 last:pb-0">
+                <h3 className="font-display text-[clamp(2.4rem,5vw,4.25rem)] italic leading-[0.95]">{w.title}</h3>
+                <p className="mt-5 max-w-[44ch] text-[1.15rem] leading-relaxed text-paper/90 md:text-[1.25rem]">{w.body}</p>
+                <div className="mt-6">
                   {w.link.href.startsWith("mailto:") ? (
-                    <a href={w.link.href} className="link-under text-gold-light">
+                    <a href={w.link.href} className="link-under inline-flex min-h-[44px] items-center text-gold-light">
                       <span className="u">{w.link.label}</span>
                     </a>
                   ) : (
-                    <Link href={w.link.href} className="link-under text-gold-light">
+                    <Link href={w.link.href} className="link-under inline-flex min-h-[44px] items-center text-gold-light">
                       <span className="u">{w.link.label}</span>
                     </Link>
                   )}

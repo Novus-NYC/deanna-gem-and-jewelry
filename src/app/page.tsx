@@ -82,7 +82,7 @@ export default function Home() {
           <div className="container-site py-16 md:py-24 lg:col-span-6 lg:max-w-none lg:pl-14 lg:pr-10">
             <Reveal>
               <h2 id="stones-title" className="font-display text-d2">
-                From Ceylon, <span className="italic">in the box.</span>
+                From Ceylon, <span className="italic">by the carat.</span>
               </h2>
               <p className="mt-5 max-w-[42ch] text-[1.1rem] text-ink-soft">
                 Every stone we’ve posted, written down the way a dealer labels a gem paper: weight, stone, origin.

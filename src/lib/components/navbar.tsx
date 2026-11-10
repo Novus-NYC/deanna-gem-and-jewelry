@@ -55,7 +55,7 @@ export function Navbar() {
           <Crystal className="h-10 w-9 shrink-0 text-gold" />
           <span className="flex flex-col leading-none">
             <span className="font-display text-[1.75rem] italic leading-none">Deanna</span>
-            <span className="tag-label mt-1 text-[0.6875rem] tracking-[0.2em] text-gold">Gem &amp; Jewelry</span>
+            <span className="tag-label mt-1 text-[0.75rem] tracking-[0.2em] text-gold">Gem &amp; Jewelry</span>
           </span>
         </Link>
 
